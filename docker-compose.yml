@@ -1,0 +1,32 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./Docker
+      dockerfile: Dockerfile   # Use Docker/Dockerfile for the Node.js backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/client/src/app         # Sync the local app directory with the container
+    depends_on:
+      - db                     # Ensure backend starts after the db service
+  
+  db:
+    build:
+      context: ./Docker/db      # Use Docker/db/Dockerfile for the MySQL database
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portfolio
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./Docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge
