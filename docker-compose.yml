@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
   backend:
     build:
@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/client/src/app         # Sync the local app directory with the container
+      - .:/usr/src/app         # Sync the local app directory with the container
     depends_on:
       - db                     # Ensure backend starts after the db service
   

@@ -1,9 +1,11 @@
 {
   "name": "portfolio",
   "version": "0.0.0",
+  "description": "Queer & Women in Tech Connect Portfolio project using Express, MySQL, and Docker",
+  "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
