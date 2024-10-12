@@ -10,11 +10,11 @@ services:
       - .:/usr/src/app         # Sync the local app directory with the container
     depends_on:
       - db                     # Ensure backend starts after the db service
-  
+    networks:
+      - backend_network
+
   db:
-    build:
-      context: ./Docker/db      # Use Docker/db/Dockerfile for the MySQL database
-      dockerfile: Dockerfile
+    image: mysql:8.0  # Use the official MySQL image, not a custom Dockerfile (simplifies the setup)
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: portfolio
@@ -23,9 +23,15 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./Docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./Docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql  # Load init.sql into MySQL
     networks:
       - backend_network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
 networks:
   backend_network:
