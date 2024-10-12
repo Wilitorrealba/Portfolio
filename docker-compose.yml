@@ -2,8 +2,8 @@ version: '3.9'
 services:
   backend:
     build:
-      context: ./Docker
-      dockerfile: Dockerfile   # Use Docker/Dockerfile for the Node.js backend
+      context: .
+      dockerfile: Docker/Dockerfile   # Use Docker/Dockerfile for the Node.js backend
     ports:
       - "3000:3000"
     volumes:
