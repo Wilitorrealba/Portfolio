@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Docker/Dockerfile   # Use Docker/Dockerfile for the Node.js backend
+      dockerfile: Docker/Dockerfile   # Uses Docker/Dockerfile for the Node.js backend
     ports:
       - "3000:3000"
     volumes:
@@ -14,7 +14,7 @@ services:
       - backend_network
 
   db:
-    image: mysql:8.0  # Use the official MySQL image, not a custom Dockerfile (simplifies the setup)
+    image: mysql:8.0  # Using the official MySQL image to simplify setup
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: portfolio
@@ -23,7 +23,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./Docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql  # Load init.sql into MySQL
+      - ./Docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql  # Loads init.sql into MySQL
     networks:
       - backend_network
     healthcheck:

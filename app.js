@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-
+const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users');
 
 const app = express();
@@ -18,5 +18,13 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// Define the port (use an environment variable or default to 3000)
+const PORT = process.env.PORT || 3000;
+
+// Listen on the specified port
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 module.exports = app;
