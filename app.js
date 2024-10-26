@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users');
+const projectsRouter = require('./routes/projects');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/projects', projectsRouter);
 
 // Define the port (use an environment variable or default to 3000)
 const PORT = process.env.PORT || 3000;
