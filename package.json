@@ -18,6 +18,7 @@
     "nodemon": "^3.1.7"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17"
+    "@types/cors": "^2.8.17",
+    "eslint": "^9.13.0"
   }
 }
