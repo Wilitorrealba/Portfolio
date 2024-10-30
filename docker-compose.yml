@@ -8,6 +8,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app         # Sync the local app directory with the container
+      - /usr/src/app/node_modules # create volume for node_modules to avoid overwriting
     depends_on:
       - db                     # Ensure backend starts after the db service
     networks:
