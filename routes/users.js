@@ -8,22 +8,26 @@ const db = require("../model/helper"); //imports a module named helper from the 
 // Express middleware to parse JSON request bodies
 router.use(express.json());
 
+router.get('/', function(req, res, next) {
+  res.send('Users Endpoint');
+});
+
 /* GET users listing. */
-router.get("/", async function(req, res, next) {
-  try {
-    const result = await db("SELECT * FROM users;");
-    res.send(result.data);
-  } catch (err) {
-    res.status(500).send(err)
-  }
-});
-//endpoint to get user by id
-router.get("/:id", async function(req, res, next) {
-  try {
-    const result = await db(`SELECT * FROM users WHERE id = ${req.params.id};`);
-    res.send(result.data);
-  } catch (err) {
-    res.status(500).send(err)
-  }
-});
+// router.get("/", async function(req, res, next) {
+//   try {
+//     const result = await db("SELECT * FROM users;");
+//     res.send(result.data);
+//   } catch (err) {
+//     res.status(500).send(err)
+//   }
+// });
+// //endpoint to get user by id
+// router.get("/:id", async function(req, res, next) {
+//   try {
+//     const result = await db(`SELECT * FROM users WHERE id = ${req.params.id};`);
+//     res.send(result.data);
+//   } catch (err) {
+//     res.status(500).send(err)
+//   }
+// });
 module.exports = router;

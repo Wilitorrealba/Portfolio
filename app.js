@@ -4,7 +4,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const projectsRouter = require('./routes/projects');
+const projectsRouter = require('./routes/project');
 
 const app = express();
 
