@@ -1,10 +1,10 @@
 const express = require('express');
-const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const indexRouter = require('./routes/index')
+const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const projectsRouter = require('./routes/projects');
 
 const app = express();
 
@@ -17,7 +17,8 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/projects', projectsRouter);
 
 // Define the port (use an environment variable or default to 3000)
 const PORT = process.env.PORT || 3000;
@@ -27,4 +28,11 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+app.get('/api/users', (req, res) => {
+  res.send('Access the users API');
+});
+
+app.get('/api/projects', (req, res) => {
+  res.send('Access to the projects API');
+});
 module.exports = app;
