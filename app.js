@@ -28,11 +28,5 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.get('/api/users', (req, res) => {
-  res.send('Access the users API');
-});
 
-app.get('/api/projects', (req, res) => {
-  res.send('Access to the projects API');
-});
 module.exports = app;
