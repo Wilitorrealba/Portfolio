@@ -45,4 +45,6 @@ CREATE TABLE IF NOT EXISTS projects (
     CONSTRAINT fk_projects_users FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+ALTER USER 'user'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+FLUSH PRIVILEGES;
 
